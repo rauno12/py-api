@@ -88,7 +88,7 @@ The use case is that user lands on the page (no existing session). User will fil
 #### New session
 **Request:**
 ```
-POST /submission/0 HTTP/1.1
+PUT /submission/0 HTTP/1.1
 
 {
   "username": "Juhan",
