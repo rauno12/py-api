@@ -88,7 +88,7 @@ The use case is that user lands on the page (no existing session). User will fil
 #### New session
 **Request:**
 ```
-PUT /submission/0 HTTP/1.1
+POST /submission/0 HTTP/1.1
 
 {
   "username": "Juhan",
@@ -121,7 +121,7 @@ HTTP/1.1 201 Created
 #### Existing session
 **Request:**
 ```
-POST /submission/{session_id} HTTP/1.1
+PUT /submission/{session_id} HTTP/1.1
 
 {
   "username": "Jaan",
