@@ -7,6 +7,7 @@ from orm import db, OrmRequestHandler, Sector, Submission, SubmissionSector, Doe
 import json
 import uuid
 
+
 # Handler for Sector-s
 class SectorRequestHandler(OrmRequestHandler):
     def get(self):
@@ -17,6 +18,7 @@ class SectorRequestHandler(OrmRequestHandler):
 
         # Convert dictionary to JSON and return
         self.write(json.dumps(response_data))
+
 
 # Handler for Submission-s
 class SubmissionRequestHandler(OrmRequestHandler):
@@ -96,7 +98,8 @@ class SubmissionRequestHandler(OrmRequestHandler):
             return
 
         # Convert a model instance to a dictionary
-        model_dict = model_to_dict(submission, backrefs=True, max_depth=1, exclude=[Submission.id, Submission.session_id])
+        model_dict = model_to_dict(submission, backrefs=True, max_depth=1,
+                                   exclude=[Submission.id, Submission.session_id])
 
         # Convert dictionary to JSON and return
         self.write(json.dumps(model_dict))
@@ -106,11 +109,13 @@ class SubmissionRequestHandler(OrmRequestHandler):
 def generate_session_id():
     return uuid.uuid4().hex
 
+
 def make_api():
     return Application([
         (r'/sectors', SectorRequestHandler),
         (r'/submission/([a-zA-Z0-9]+)', SubmissionRequestHandler)
     ])
+
 
 if __name__ == '__main__':
     app = make_api()

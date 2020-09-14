@@ -1,7 +1,8 @@
 
-# This script is made for generating relational database INSERT statements to migrate sectors from TEST.html to API database.
-# Some primitive text processing is done by text editor
-# The printout of this script is suitable to run in database console
+# This script is made for generating relational database INSERT statements to migrate sectors from TEST.html to API
+# database.
+# Some primitive text processing is done by text editor The printout of this script is suitable to run in
+# database console
 
 rawSectors = [
     "Manufacturing",

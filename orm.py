@@ -13,29 +13,36 @@ db = MySQLDatabase(
     host=mysql_config['host']
 )
 
+
 # Database model definitions
 class BaseModel(Model):
     class Meta:
         database = db
 
+
 class Sector(BaseModel):
     id = AutoField()
     parent_id = IntegerField()
     name = CharField()
+
     class Meta:
         table_name = 'sector'
+
 
 class Submission(BaseModel):
     id = AutoField()
     session_id = CharField(unique=True)
     username = CharField()
     is_agree_of_terms = BooleanField()
+
     class Meta:
         table_name = 'submission'
+
 
 class SubmissionSector(BaseModel):
     submission_id = ForeignKeyField(Submission, backref='sectors')
     sector_id = ForeignKeyField(Sector, object_id_name='asd')
+
     class Meta:
         table_name = 'submission_sector'
         primary_key = CompositeKey('submission_id', 'sector_id')
