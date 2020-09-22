@@ -8,20 +8,29 @@ import json
 import uuid
 
 
+class BaseHandler(OrmRequestHandler):
+    def set_default_headers(self):
+        self.set_header("Access-Control-Allow-Origin", "*")
+        self.set_header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+        self.set_header('Access-Control-Allow-Methods', "POST, PUT, GET, OPTIONS")
+
 # Handler for Sector-s
-class SectorRequestHandler(OrmRequestHandler):
+class SectorRequestHandler(BaseHandler):
     def get(self):
         response_data = []
-        for sector in Sector.select():
+        for sector in Sector.select().order_by(Sector.name.asc()):
             # Convert a model instance to a dictionary
             response_data.append(model_to_dict(sector))
+
+        # Set HTTP status 200 Success
+        self.set_status(202)
 
         # Convert dictionary to JSON and return
         self.write(json.dumps(response_data))
 
 
 # Handler for Submission-s
-class SubmissionRequestHandler(OrmRequestHandler):
+class SubmissionRequestHandler(BaseHandler):
     # Creating a new Submission record
     # Service will generate and return session_id (tied with this submission)
     def post(self, _):
