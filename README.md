@@ -82,9 +82,6 @@ The key concept is:
 * User data is modified trough API using session_id as reference (PUT */submission/{session_id}*)
 * FYI: New session can be start by deleting exiting session cookie
 
-
-The use case is that user lands on the page (no existing session). User will fill the form and submit data. Data 
-
 #### New session
 **Request:**
 ```
