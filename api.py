@@ -14,6 +14,7 @@ class BaseHandler(OrmRequestHandler):
         self.set_header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
         self.set_header('Access-Control-Allow-Methods', "POST, PUT, GET, OPTIONS")
 
+
 # Handler for Sector-s
 class SectorRequestHandler(BaseHandler):
     def get(self):
